@@ -1,0 +1,37 @@
+	public static boolean isExponential(Queue<Integer> q)
+	{
+		//line 1
+		int i = 0;
+		
+		//line 2
+		int v1 = q.serve();
+		
+		//line 3
+		q.enqueue(v1);
+		
+		//line 4
+		while(++i < q.length())
+		{
+			//line 5
+			int v2 = q.serve();
+			
+			//line 6
+			q.enqueue(v2);
+
+			//line 7
+			if (v1 * v1 > v2) //we have a problem, 1st put things back in the queue then return false
+			{
+				//line 8
+				while(++i < q.length())
+					q.enqueue(q.serve());
+
+				return false;
+			}
+			
+			//line 9
+			v1 = v2;
+		}
+		
+		//line 10
+		return true;
+	}
